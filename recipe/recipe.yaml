@@ -1,5 +1,5 @@
 context:
-  version: "0.8.8"
+  version: "0.8.12"
 
 package:
   name: biomcp
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/genomoncology/biomcp/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 296e8c066145296b7d5bd019055a24bfe139623990a5b232e03554cdad2ad33a
+  sha256: 51e6e3bf14630d54156e5cc3ddc05411ae0bb7c429abb5ddcab43291b0d877ea
 
 build:
-  number: 1
+  number: 0
   script:
     env:
       CARGO_PROFILE_RELEASE_STRIP: symbols
