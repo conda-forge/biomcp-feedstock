@@ -14,7 +14,11 @@ build:
   script:
     env:
       CARGO_PROFILE_RELEASE_STRIP: symbols
-      CARGO_PROFILE_RELEASE_LTO: fat
+      # LTO=fat is too slow on the QEMU-emulated linux-aarch64 Azure runner
+      # (Azure has a 3h job timeout). Use thin LTO there to stay within budget.
+      # Trade-off on aarch64 only: binary is ~5-15% larger and runtime is
+      # ~1-5% slower, which is negligible for this I/O-bound CLI.
+      CARGO_PROFILE_RELEASE_LTO: ${{ "thin" if linux and aarch64 else "fat" }}
     content:
       - if: unix
         then:
